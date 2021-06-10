@@ -1,11 +1,10 @@
 import smtplib
 import imghdr
 from email.message import EmailMessage
+from getpass import getpass
 
 Sender_Email = "ragavendra015@gmail.com"
-Reciever_Email = "ragavendra015@gmail.com"
-password = "lxwreemucgugrwzh"
-
+password = getpass()
 
 newMessage = EmailMessage()                         
 newMessage['Subject'] = "Check the image to see who intruded" 
