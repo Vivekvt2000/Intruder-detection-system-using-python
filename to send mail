@@ -1,0 +1,28 @@
+import smtplib
+import imghdr
+from email.message import EmailMessage
+
+Sender_Email = "ragavendra015@gmail.com"
+Reciever_Email = "ragavendra015@gmail.com"
+password = "lxwreemucgugrwzh"
+
+
+newMessage = EmailMessage()                         
+newMessage['Subject'] = "Check the image to see who intruded" 
+newMessage['From'] = Sender_Email                   
+newMessage['To'] = Reciever_Email                   
+newMessage.set_content('Intruder found!!') 
+
+with open('cvbcv.jpg', 'rb') as img:
+    image_data = img.read()
+    image_type = imghdr.what(img.name)
+    image_name = img.name
+
+newMessage.add_attachment(image_data, maintype='image', subtype=image_type, filename=image_name)
+
+with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+    
+    smtp.login(Sender_Email, password) 
+    print("sucessfully logged in")
+    smtp.send_message(newMessage) 
+    print("email sent sucessfully")
